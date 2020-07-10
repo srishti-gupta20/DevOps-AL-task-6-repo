@@ -3,10 +3,10 @@ job("task6_job1"){
 		github('srishti-gupta20/DevOps-Task3-Repo', 'master')
 	}
 	steps {
-		shell('''
-			sudo cp -r . /host/devopstask3
-		''')
-	}
+shell('''
+sudo cp -r . /host/devopstask3
+''')
+}
 }
 
 job("task6_job2"){
@@ -61,7 +61,7 @@ fi
 echo "pod url: 192.168.99.100:31111"
 EOT
 ''')
-	}
+}
 }
 
 job("task6_job3"){
@@ -69,27 +69,27 @@ job("task6_job3"){
 		upstream('task6_job2', 'SUCCESS')
 	}
 	steps {
-		shell('''
-			export status=$(curl -o /dev/null -s -w "%{http_code}" http://192.168.99.100:31111/index.php)
-			if [[ $status==200 ]]
-			then
-    				exit 0 
-    				echo "Success" 
-    				sudo python3 /devopstask3/success-mail.py
-			else
-    				exit 1 
-    				echo "Failure"
-    				sudo python3 /devopstask3/failure-mail.py
-			fi
-		''')
-	}
+shell('''
+export status=$(curl -o /dev/null -s -w "%{http_code}" http://192.168.99.100:31111/index.php)
+if [[ $status==200 ]]
+then
+    exit 0 
+    echo "Success" 
+    sudo python3 /devopstask3/success-mail.py
+else
+    exit 1 
+    echo "Failure"
+    sudo python3 /devopstask3/failure-mail.py
+fi
+''')
+}
 }
 
-buildPipelineView('DevOps AL Task-6 Build-pipeline') {
+buildPipelineView('DevOps-AL task-6') {
     filterBuildQueue()
     filterExecutors()
-    title('DevOps AL task-6')
+    title('DevOps-AL-task6-Build-pipelne')
     displayedBuilds(1)
     selectedJob('task6_job1')
-    refreshFrequency(3)
+    refreshFrequency(2)
 }
