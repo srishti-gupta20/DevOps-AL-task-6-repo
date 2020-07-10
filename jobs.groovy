@@ -88,7 +88,7 @@ job("task6_job3"){
 buildPipelineView('DevOps AL Task-6 Build-pipeline') {
     filterBuildQueue()
     filterExecutors()
-    title('DevOps-AL task-6')
+    title('DevOps AL task-6')
     displayedBuilds(1)
     selectedJob('task6_job1')
     refreshFrequency(3)
